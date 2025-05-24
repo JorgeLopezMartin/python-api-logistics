@@ -1,0 +1,38 @@
+services:
+    application:
+        image: python-api-jorge
+        env_file:
+            - local.env
+        volumes:
+            - './:/code:delegated'
+
+    db:
+        image: postgres
+        restart: always
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_PASSWORD: password
+        
+    server:
+        extends:
+            service: application
+        ports:
+            - "8000:8000"
+        depends_on:
+            - db
+
+    shell:
+        extends:
+            service: application
+        entrypoint: ["bash"]
+
+
+    migrations:
+        extends:
+            service: application
+        entrypoint: [
+            "alembic"
+        ]
+        depends_on:
+            - db
