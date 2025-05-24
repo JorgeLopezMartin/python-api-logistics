@@ -1,6 +1,6 @@
 from typing import List, Optional
 
-from sqlalchemy import String, Float
+from sqlalchemy import String, Float, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.models.base import BaseModel
@@ -12,15 +12,20 @@ class Contract(BaseModel):
 
     id: Mapped[int] = mapped_column(primary_key=True)
 
-    client_name: Mapped[str] = mapped_column(String(100))
-    cargo_type: Mapped[str] = mapped_column(String(50))
-    destination: Mapped[str] = mapped_column(String(50))
     price: Mapped[float] = mapped_column(Float)
+
+    client_id: Mapped[int] = mapped_column(ForeignKey('clients.id'))
+    client: Mapped['Client'] = relationship(back_populates='contracts')
+
+    cargoes: Mapped[List['Cargo']] = relationship(back_populates='contract')
+
+    location_id: Mapped[int] = mapped_column(ForeignKey('locations.id'))
+    location: Mapped['Location'] = relationship(back_populates='contracts')
 
     def __str__(self) -> str:
         return (
-            f'client_name={self.client_name},'
+            f'id={self.id},'
             f'cargo_type={self.cargo_type},'
-            f'destination=¨{self.destination},'
+            f'destination=¨{self.location_id},'
             f'price={self.price}'
         )
