@@ -1,3 +1,5 @@
+from typing import List, Optional
+
 from sqlalchemy import String, Enum, Float, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -11,6 +13,8 @@ class Vessel(BaseModel):
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(100))
     capacity: Mapped[float] = mapped_column(Float)
+
+    tracks: Mapped[List['Track']] = relationship(back_populates='vessel')
 
     def __str__(self) -> str:
         return (

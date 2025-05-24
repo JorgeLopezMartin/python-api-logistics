@@ -4,6 +4,7 @@ from app.models.cargo import Cargo
 from app.models.client import Client
 from app.models.contract import Contract
 from app.models.location import Location
+from app.models.track import Track
 from app.models.vessel import Vessel
 
 # Used by Alembic to track model modifications

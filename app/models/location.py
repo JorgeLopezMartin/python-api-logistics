@@ -17,6 +17,8 @@ class Location(BaseModel):
 
     contracts: Mapped[List['Contract']] = relationship(back_populates='location')
 
+    tracks: Mapped[List['Track']] = relationship(back_populates='location')
+
     def __str__(self) -> str:
         return (
             f'id={self.id},'

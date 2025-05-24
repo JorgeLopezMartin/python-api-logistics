@@ -30,6 +30,8 @@ class Cargo(BaseModel):
     contract_id: Mapped[int] = mapped_column(ForeignKey('contracts.id'))
     contract: Mapped['Contract'] = relationship(back_populates='cargoes')
 
+    tracks: Mapped[List['Track']] = relationship(back_populates='cargo')
+
     def __str__(self) -> str:
         return (
             f'id={self.id},'

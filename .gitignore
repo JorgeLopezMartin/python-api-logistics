@@ -1,2 +1,7 @@
+# Local workspace
 .env
 .vscode
+
+# Byte-compiled files
+__pycache__/
+app/models/__pycache__/
