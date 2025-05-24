@@ -19,6 +19,10 @@ clean: ##@development Stop and remove the containers created by the start comman
 shell: ##@development Start a bash shell in a container.
 	docker-compose run --rm shell
 
+.PHONY: logs
+logs: ##@development Show logs for the current project.
+	docker-compose logs -f
+
 .PHONY: makemigrations
 makemigrations: ##@database Run the command to autogenerate new migrations on the database for missing model changes. Set the name using msg=<migration_name>
 makemigrations: msg?=''
