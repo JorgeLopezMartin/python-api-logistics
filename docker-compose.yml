@@ -36,3 +36,28 @@ services:
         ]
         depends_on:
             - db
+
+    integration_test_db:
+        image: postgres
+        restart: always
+        ports:
+            - "5433:5433"
+        environment:
+            POSTGRES_PASSWORD: password
+        command: -p 5433
+        healthcheck:
+            test: ["CMD", "pg_isready", "-U", "postgres", "-p", "5433"]
+            interval: 5s
+            timeout: 5s
+            retries: 5
+
+    integration_test:
+        environment:
+            DB_HOST: integration_test_db
+            DB_PORT: 5433
+        extends:
+            service: application
+        entrypoint: ["pytest"]
+        depends_on:
+            integration_test_db:
+                condition: service_healthy

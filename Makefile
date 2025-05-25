@@ -41,4 +41,6 @@ downgrade-db: revision?='-1'
 downgrade-db:
 	docker-compose run --rm migrations downgrade ${revision}
 
-
+.PHONY: integration-tests
+integration-tests: ##@test Run integration tests for file=<file> provided.
+	docker-compose run --rm integration_test -m integration

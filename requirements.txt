@@ -5,3 +5,4 @@ sqlalchemy
 alembic
 pydantic-settings
 psycopg2
+pytest
