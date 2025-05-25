@@ -2,8 +2,7 @@ from fastapi import APIRouter
 from fastapi.exceptions import HTTPException
 from fastapi.params import Depends
 from starlette.status import (
-    HTTP_200_OK,
-    HTTP_409_CONFLICT
+    HTTP_404_NOT_FOUND
 )
 
 from app.services.location import LocationService
@@ -11,22 +10,18 @@ from app.schemas.base import APIRequest, APIResponse
 from app.schemas.location import (
     LocationRequest,
     LocationResponse,
-    LocationResponseDuplicated
+    LocationResponseNotFound
 )
-from app.services.exceptions import LocationDuplicatedException
+from app.services.exceptions import LocationNotFoundException
 from app.views.exceptions import raise_http_exception
 
 
-def create_location(
-    request: APIRequest[LocationRequest],
+def get_location(
+    location_id: int,
     location_service: LocationService = Depends()
 ) -> APIResponse[LocationResponse]:
     try:
-        location = location_service.create(
-            name=request.data.name,
-            latitude=request.data.latitude,
-            longitude=request.data.longitude
-        )
+        location = location_service.get(id=location_id)
         return APIResponse(data=location)
-    except LocationDuplicatedException as ex:
-        raise_http_exception(ex, HTTP_409_CONFLICT, [LocationResponseDuplicated().dict()])
+    except LocationNotFoundException as ex:
+        raise_http_exception(ex, HTTP_404_NOT_FOUND, [LocationResponseNotFound().dict()])

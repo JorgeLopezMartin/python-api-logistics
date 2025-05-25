@@ -1,7 +1,10 @@
 from typing import Any
 
+from app.database.filter import QueryFilter
+from app.database.query import Page
 from app.models.location import Location
 from app.repositories.base import BaseRepository
+from app.schemas.params.location import LocationParams
 
 class LocationRepository(BaseRepository):
 
@@ -31,3 +34,22 @@ class LocationRepository(BaseRepository):
         :raises `NotFoundException`: Location not found.
         """
         return super().get(Location, **filters)
+
+    def list(
+        self,
+        params: LocationParams
+    ) -> Page[Location]:
+        """Returns the locations that match the given criteria"""
+
+        q_filter = QueryFilter()
+
+        q_filter.ilike(Location.name, params.filters.name)
+
+        query = self.query(Location).filter(q_filter())
+
+        page = query.paginate(
+            params.pagination.page,
+            params.pagination.page_size
+        )
+
+        return page

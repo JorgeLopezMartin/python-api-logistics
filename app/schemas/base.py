@@ -31,3 +31,22 @@ class APIResponse(GenericModel, Generic[DataT]):
     """
 
     data: DataT
+
+class Pagination(BaseModel):
+    """Pagination field"""
+
+    page: int
+    page_size: int
+    total: int
+
+    class Config:
+        orm_mode: True
+
+class APIResponsePaginated(GenericModel, Generic[DataT]):
+    """API schema for paginated responses"""
+
+    data: List[DataT]
+    pagination: Pagination
+
+    class Config:
+        orm_mode: True
