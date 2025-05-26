@@ -1,5 +1,7 @@
 PAGINATION_DEFAULT_PAGE = 0
 PAGINATION_DEFAULT_PAGE_SIZE = 50
 
+TYPE_CLIENT_DUPLICATED = 'client_duplicated'
+TYPE_CLIENT_NOT_FOUND = 'client_not_found'
 TYPE_LOCATION_DUPLICATED = 'location_duplicated'
 TYPE_LOCATION_NOT_FOUND = 'location_not_found'

@@ -57,7 +57,7 @@ services:
             DB_PORT: 5433
         extends:
             service: application
-        entrypoint: ["pytest"]
+        entrypoint: ["pytest", "--disable-warnings"]
         depends_on:
             integration_test_db:
                 condition: service_healthy

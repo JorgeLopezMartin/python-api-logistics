@@ -1,0 +1,29 @@
+from typing import Any, List, Literal, Optional, Union
+
+from pydantic import BaseModel, Field
+
+from app.schemas import constants
+
+class ClientBase(BaseModel):
+
+    class Config:
+        from_attributes=True
+
+class ClientRequest(BaseModel):
+    """Client POST request"""
+
+    name: str
+
+class ClientResponse(BaseModel):
+    """Client info response"""
+
+    id: int
+    name: str
+
+class ClientResponseDuplicated(BaseModel):
+    msg: str = 'Client - Client duplicated'
+    type: str = constants.TYPE_CLIENT_DUPLICATED
+
+class ClientResponseNotFound(BaseModel):
+    msg: str = 'Client - Client not found'
+    type: str = constants.TYPE_CLIENT_NOT_FOUND
