@@ -21,8 +21,11 @@ def get_track(
     track_service: TrackService = Depends()
 ) -> APIResponse[TrackResponse]:
     """Endpoint for finding a track by ID"""
+    logger.info('Searching track %s', track_id)
     try:
         track = track_service.get(id=track_id)
+        logger.info('Track %s found', track_id)
         return APIResponse(data=track)
     except TrackNotFoundException as ex:
+        logger.info('Track %s not found', track_id)
         return raise_http_exception(ex, HTTP_404_NOT_FOUND, [TrackResponseNotFound().dict()])

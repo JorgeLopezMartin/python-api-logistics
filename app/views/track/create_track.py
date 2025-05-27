@@ -44,18 +44,23 @@ def create_track(
             cargo_id=request.data.cargo_id,
             vessel_id=request.data.vessel_id
         )
+        logger.info('Track successfully created')
         return APIResponse(data=track)
     except CargoAlreadyDeliveredException as ex:
+        logger.info('Cargo already delivered, no track created')
         return raise_http_exception(
             ex,
             HTTP_404_NOT_FOUND,
             [CargoResponseAlreadyDelivered().dict()]
         )
     except CargoNotFoundException as ex:
+        logger.info('Cargo %s cannot be found', request.data.cargo_id)
         return raise_http_exception(ex, HTTP_404_NOT_FOUND, [CargoResponseNotFound().dict()])
     except LocationNotFoundException as ex:
+        logger.info('Location %s cannot be found', request.data.location_id)
         return raise_http_exception(ex, HTTP_404_NOT_FOUND, [LocationResponseNotFound().dict()])
     except TrackDuplicatedException as ex:
         return raise_http_exception(ex, HTTP_409_CONFLICT, [TrackResponseDuplicated().dict()])
     except VesselNotFoundException as ex:
+        logger.info('Vessel %s not found', request.data.vessel_id)
         return raise_http_exception(ex, HTTP_404_NOT_FOUND, [VesselResponseNotFound().dict()])
