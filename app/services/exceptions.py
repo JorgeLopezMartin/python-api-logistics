@@ -7,6 +7,9 @@ class CargoNotFoundException(Exception):
 class CargoDuplicatedException(Exception):
     """Cargo already exists"""
 
+class CargoAlreadyDeliveredException(Exception):
+    """Cargo has already been delivered and cannot move"""
+
 class ClientNotDeletableException(Exception):
     """Client cannot be deleted"""
 
@@ -33,6 +36,15 @@ class LocationNotFoundException(Exception):
 
 class LocationDuplicatedException(Exception):
     """Location already exists"""
+
+class TrackNotDeletableException(Exception):
+    """Track cannot be deleted"""
+
+class TrackNotFoundException(Exception):
+    """Track can not be found"""
+
+class TrackDuplicatedException(Exception):
+    """Track already exists"""
 
 class VesselNotDeletableException(Exception):
     """Vessel cannot be deleted"""

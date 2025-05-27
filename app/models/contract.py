@@ -25,7 +25,6 @@ class Contract(BaseModel):
     def __str__(self) -> str:
         return (
             f'id={self.id},'
-            f'cargo_type={self.cargo_type},'
-            f'destination=¨{self.location_id},'
+            f'destination={self.location_id},'
             f'price={self.price}'
         )

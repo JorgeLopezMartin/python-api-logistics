@@ -31,6 +31,10 @@ class CargoResponse(BaseModel):
     status: CargoStatus
     contract_id: int
 
+class CargoResponseAlreadyDelivered(BaseModel):
+    msg: str = 'Cargo - Already delivered'
+    type: str = constants.TYPE_CARGO_DELIVERED
+
 class CargoResponseDuplicated(BaseModel):
     msg: str = 'Cargo - Cargo duplicated'
     type: str = constants.TYPE_CARGO_DUPLICATED

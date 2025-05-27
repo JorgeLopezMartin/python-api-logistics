@@ -1,6 +1,7 @@
 PAGINATION_DEFAULT_PAGE = 0
 PAGINATION_DEFAULT_PAGE_SIZE = 50
 
+TYPE_CARGO_DELIVERED = 'cargo_already_delivered'
 TYPE_CARGO_DUPLICATED = 'cargo_duplicated'
 TYPE_CARGO_NOT_FOUND = 'cargo_not_found'
 TYPE_CARGO_NOT_DELETABLE = 'cargo_not_deletable'
@@ -13,6 +14,9 @@ TYPE_CONTRACT_NOT_DELETABLE = 'contract_not_deletable'
 TYPE_LOCATION_DUPLICATED = 'location_duplicated'
 TYPE_LOCATION_NOT_FOUND = 'location_not_found'
 TYPE_LOCATION_NOT_DELETABLE = 'location_not_deletable'
+TYPE_TRACK_DUPLICATED = 'track_duplicated'
+TYPE_TRACK_NOT_FOUND = 'track_not_found'
+TYPE_TRACK_NOT_DELETABLE = 'track_not_deletable'
 TYPE_VESSEL_DUPLICATED = 'vessel_duplicated'
 TYPE_VESSEL_NOT_FOUND = 'vessel_not_found'
 TYPE_VESSEL_NOT_DELETABLE = 'vessel_not_deletable'
