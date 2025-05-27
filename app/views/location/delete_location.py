@@ -22,6 +22,7 @@ def delete_location(
     location_id: int,
     location_service: LocationService = Depends()
 ) -> Response:
+    """Endpoint function for deleting a location by id"""
     try:
         location_service.delete(location_id)
         return Response(status_code=HTTP_204_NO_CONTENT)

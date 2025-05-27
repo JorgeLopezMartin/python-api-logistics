@@ -20,6 +20,7 @@ def update_vessel(
     request: APIRequest[VesselUpdateRequest],
     vessel_service: VesselService = Depends()
 ) -> Response:
+    """Endpoint for updating a vessel"""
     try:
         update_params = {k: v for k, v in vars(request.data).items() if v}
         vessel_service.update(

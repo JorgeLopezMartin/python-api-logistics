@@ -20,6 +20,7 @@ def get_track(
     track_id: int,
     track_service: TrackService = Depends()
 ) -> APIResponse[TrackResponse]:
+    """Endpoint for finding a track by ID"""
     try:
         track = track_service.get(id=track_id)
         return APIResponse(data=track)

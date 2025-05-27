@@ -22,6 +22,7 @@ def delete_vessel(
     vessel_id: int,
     vessel_service: VesselService = Depends()
 ) -> Response:
+    """Endpoint function for deleting a vessel by ID"""
     try:
         vessel_service.delete(vessel_id)
         return Response(status_code=HTTP_204_NO_CONTENT)

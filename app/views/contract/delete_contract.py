@@ -22,6 +22,7 @@ def delete_contract(
     contract_id: int,
     contract_service: ContractService = Depends()
 ) -> Response:
+    """Endpoint function for deleting a contract"""
     try:
         contract_service.delete(contract_id)
         return Response(status_code=HTTP_204_NO_CONTENT)

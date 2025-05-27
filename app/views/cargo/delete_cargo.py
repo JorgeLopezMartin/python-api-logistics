@@ -22,6 +22,9 @@ def delete_cargo(
     cargo_id: int,
     cargo_service: CargoService = Depends()
 ) -> Response:
+    """Endpoint function for DELETE /cargo/{cargo_id}
+    Deletes a cargo from database. Returns OK if successful
+    Returns 404 if the cargo cannot be found in DB"""
     try:
         cargo_service.delete(cargo_id)
         return Response(status_code=HTTP_204_NO_CONTENT)

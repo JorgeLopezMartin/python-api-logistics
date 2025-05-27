@@ -23,6 +23,9 @@ def create_cargo(
     request: APIRequest[CargoRequest],
     cargo_service: CargoService = Depends()
 ) -> APIResponse[CargoResponse]:
+    """Defines endpoint function for POST /cargo.
+    Creates a cargo in DB. Returns OK if successful.
+    Returns 404 if assigned contract is not found."""
     try:
         cargo = cargo_service.create(
             type=request.data.type,

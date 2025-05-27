@@ -20,6 +20,7 @@ def update_cargo(
     request: APIRequest[CargoUpdateRequest],
     cargo_service: CargoService = Depends()
 ) -> Response:
+    """Endpoint function for updating a specific cargo."""
     try:
         update_params = {k: v for k, v in vars(request.data).items() if v}
         cargo_service.update(

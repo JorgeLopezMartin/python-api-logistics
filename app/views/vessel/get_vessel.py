@@ -17,6 +17,7 @@ def get_vessel(
     vessel_id: int,
     vessel_service: VesselService = Depends()
 ) -> APIResponse[VesselResponse]:
+    """Endpoint function for finding a vessel by ID"""
     try:
         vessel = vessel_service.get(id=vessel_id)
         return APIResponse(data=vessel)

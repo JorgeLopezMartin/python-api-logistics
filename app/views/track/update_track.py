@@ -20,6 +20,7 @@ def update_track(
     request: APIRequest[TrackUpdateRequest],
     track_service: TrackService = Depends()
 ) -> Response:
+    """Endpoint for updating a track"""
     try:
         update_params = {k: v for k, v in vars(request.data).items() if v}
         track_service.update(

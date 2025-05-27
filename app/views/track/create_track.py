@@ -35,6 +35,7 @@ def create_track(
     request: APIRequest[TrackRequest],
     track_service: TrackService = Depends()
 ) -> APIResponse[TrackResponse]:
+    """Endpoint function for creating tracking information"""
     try:
         logger.info('Creating new track')
         track = track_service.create(

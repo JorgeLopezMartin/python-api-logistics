@@ -4,6 +4,7 @@ from sqlalchemy import DateTime
 from sqlalchemy.orm import Mapped, declarative_base, mapped_column
 
 class Base:
+    """Base model to inherit"""
     created: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
         default=datetime.utcnow

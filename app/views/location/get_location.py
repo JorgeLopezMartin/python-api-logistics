@@ -17,6 +17,7 @@ def get_location(
     location_id: int,
     location_service: LocationService = Depends()
 ) -> APIResponse[LocationResponse]:
+    """Endpoint function for retrieving a location by ID"""
     try:
         location = location_service.get(id=location_id)
         return APIResponse(data=location)

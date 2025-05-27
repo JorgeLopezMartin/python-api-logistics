@@ -14,4 +14,5 @@ DatabaseScopedSession = scoped_session(DatabaseSession)
 
 
 def get_db(request: Request) -> Session:
+    """Retrieves the request database session"""
     return request.state.db_session

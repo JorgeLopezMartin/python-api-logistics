@@ -17,6 +17,10 @@ def get_cargo(
     cargo_id: int,
     cargo_service: CargoService = Depends()
 ) -> APIResponse[CargoResponse]:
+    """Endpoint function for GET /cargo/{cargo_id}
+    Finds cargo from DB by ID.
+    Returns 404 if not found in DB.
+    """
     try:
         cargo = cargo_service.get(id=cargo_id)
         return APIResponse(data=cargo)

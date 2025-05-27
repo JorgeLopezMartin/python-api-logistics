@@ -22,6 +22,7 @@ def delete_track(
     track_id: int,
     track_service: TrackService = Depends()
 ) -> Response:
+    """Endpoint for deleting tracking information"""
     try:
         track_service.delete(track_id)
         return Response(status_code=HTTP_204_NO_CONTENT)

@@ -17,6 +17,7 @@ def get_contract(
     contract_id: int,
     contract_service: ContractService = Depends()
 ) -> APIResponse[ContractResponse]:
+    """Endpoint function for finding a contract by ID"""
     try:
         contract = contract_service.get(id=contract_id)
         return APIResponse(data=contract)

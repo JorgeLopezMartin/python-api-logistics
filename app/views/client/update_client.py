@@ -20,6 +20,7 @@ def update_client(
     request: APIRequest[ClientRequest],
     client_service: ClientService = Depends()
 ) -> Response:
+    """Endpoint function for updating a client"""
     try:
         update_params = {k: v for k, v in vars(request.data).items() if v}
         client_service.update(

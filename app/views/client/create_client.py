@@ -18,6 +18,7 @@ def create_client(
     request: APIRequest[ClientRequest],
     client_service: ClientService = Depends()
 ) -> APIResponse[ClientResponse]:
+    """Endpoint function for creating a new client"""
     try:
         client = client_service.create(
             name=request.data.name

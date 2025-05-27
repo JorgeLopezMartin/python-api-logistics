@@ -18,6 +18,7 @@ def create_location(
     request: APIRequest[LocationRequest],
     location_service: LocationService = Depends()
 ) -> APIResponse[LocationResponse]:
+    """Endpoint function for creating a location"""
     try:
         location = location_service.create(
             name=request.data.name,

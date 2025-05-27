@@ -17,6 +17,7 @@ def get_client(
     client_id: int,
     client_service: ClientService = Depends()
 ) -> APIResponse[ClientResponse]:
+    """Endpoint function for retrieving a client by ID"""
     try:
         client = client_service.get(id=client_id)
         return APIResponse(data=client)

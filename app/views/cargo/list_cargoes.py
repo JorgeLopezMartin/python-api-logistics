@@ -10,7 +10,8 @@ def list_cargoes(
     params: CargoParams = Depends(),
     cargo_service: CargoService = Depends()
 ) -> APIResponsePaginated[CargoResponse]:
-    """List existing cargoes"""
+    """Endpoint function for listing cargoes.
+    List existing cargoes"""
 
     page = cargo_service.list(params)
     return APIResponsePaginated(data=page.data, pagination=page.pagination.__dict__)

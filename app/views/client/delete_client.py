@@ -22,6 +22,7 @@ def delete_client(
     client_id: int,
     client_service: ClientService = Depends()
 ) -> Response:
+    """Endpoint function for deleting a client by ID"""
     try:
         client_service.delete(client_id)
         return Response(status_code=HTTP_204_NO_CONTENT)

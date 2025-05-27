@@ -20,6 +20,7 @@ def update_location(
     request: APIRequest[LocationUpdateRequest],
     location_service: LocationService = Depends()
 ) -> Response:
+    """Endpoint function for updating a location"""
     try:
         update_params = {k: v for k, v in vars(request.data).items() if v}
         location_service.update(

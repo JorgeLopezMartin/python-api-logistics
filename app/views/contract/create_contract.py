@@ -25,6 +25,7 @@ def create_contract(
     request: APIRequest[ContractRequest],
     contract_service: ContractService = Depends()
 ) -> APIResponse[ContractResponse]:
+    """Endpoint function for creating a contract"""
     try:
         contract = contract_service.create(
             price=request.data.price,

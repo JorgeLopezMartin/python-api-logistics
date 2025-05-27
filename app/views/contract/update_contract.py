@@ -20,6 +20,7 @@ def update_contract(
     request: APIRequest[ContractUpdateRequest],
     contract_service: ContractService = Depends()
 ) -> Response:
+    """Endpoint function for updating a contract"""
     try:
         update_params = {k: v for k, v in vars(request.data).items() if v}
         contract_service.update(

@@ -18,6 +18,7 @@ def create_vessel(
     request: APIRequest[VesselRequest],
     vessel_service: VesselService = Depends()
 ) -> APIResponse[VesselResponse]:
+    """Endpoint function for creating a vessel"""
     try:
         vessel = vessel_service.create(
             name=request.data.name,
