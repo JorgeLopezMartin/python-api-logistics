@@ -109,6 +109,6 @@ contracts_router.add_api_route(
             'model': APIErrorResponse[ContractResponseNotFound]
         }
     },
-    summary='Updated an existing contract',
+    summary='Updates an existing contract',
     tags=[TAG]
 )

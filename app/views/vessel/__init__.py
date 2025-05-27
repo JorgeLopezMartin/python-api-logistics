@@ -100,6 +100,6 @@ vessels_router.add_api_route(
             'model': APIErrorResponse[VesselResponseNotFound]
         }
     },
-    summary='Updated an existing vessel',
+    summary='Updates an existing vessel',
     tags=[TAG]
 )

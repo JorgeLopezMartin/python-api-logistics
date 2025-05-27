@@ -1,6 +1,9 @@
 PAGINATION_DEFAULT_PAGE = 0
 PAGINATION_DEFAULT_PAGE_SIZE = 50
 
+TYPE_CARGO_DUPLICATED = 'cargo_duplicated'
+TYPE_CARGO_NOT_FOUND = 'cargo_not_found'
+TYPE_CARGO_NOT_DELETABLE = 'cargo_not_deletable'
 TYPE_CLIENT_DUPLICATED = 'client_duplicated'
 TYPE_CLIENT_NOT_FOUND = 'client_not_found'
 TYPE_CLIENT_NOT_DELETABLE = 'client_not_deletable'

@@ -1,3 +1,12 @@
+class CargoNotDeletableException(Exception):
+    """Cargo cannot be deleted"""
+
+class CargoNotFoundException(Exception):
+    """Cargo can not be found"""
+
+class CargoDuplicatedException(Exception):
+    """Cargo already exists"""
+
 class ClientNotDeletableException(Exception):
     """Client cannot be deleted"""
 

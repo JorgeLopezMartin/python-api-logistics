@@ -104,6 +104,6 @@ clients_router.add_api_route(
             'model': APIErrorResponse[ClientResponseNotFound]
         }
     },
-    summary='Updated an existing client',
+    summary='Updates an existing client',
     tags=[TAG]
 )

@@ -104,6 +104,6 @@ locations_router.add_api_route(
             'model': APIErrorResponse[LocationResponseNotFound]
         }
     },
-    summary='Updated an existing location',
+    summary='Updates an existing location',
     tags=[TAG]
 )

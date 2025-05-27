@@ -24,7 +24,7 @@ class Cargo(BaseModel):
     id: Mapped[int] = mapped_column(primary_key=True)
 
     type: Mapped[CargoType] = mapped_column(Enum(CargoType))
-    quantity: Mapped[int] = mapped_column(Float)
+    quantity: Mapped[float] = mapped_column(Float)
     status: Mapped[CargoStatus] = mapped_column(Enum(CargoStatus))
 
     contract_id: Mapped[int] = mapped_column(ForeignKey('contracts.id'))
