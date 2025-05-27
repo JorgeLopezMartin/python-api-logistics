@@ -2,11 +2,18 @@ from fastapi.param_functions import Depends
 
 from app.database.query import Page
 from app.models.location import Location
-from app.repositories.exceptions import DuplicateException, NotFoundException
+from app.repositories.exceptions import (
+    DeleteException,
+    DuplicateException,
+    NotFoundException
+)
 from app.repositories.location import LocationRepository
 from app.schemas.params.location import LocationParams
-from app.services.exceptions import LocationDuplicatedException, LocationNotFoundException
-
+from app.services.exceptions import (
+    LocationDuplicatedException,
+    LocationNotDeletableException,
+    LocationNotFoundException
+)
 
 class LocationService:
     """Application service to manage Locations"""
@@ -60,6 +67,8 @@ class LocationService:
             with self.location_repository:
                 location = self.location_repository.get(id=location_id)
                 self.location_repository.delete(location)
+        except DeleteException as ex:
+            raise LocationNotDeletableException() from ex
         except NotFoundException as ex:
             raise LocationNotFoundException() from ex
 

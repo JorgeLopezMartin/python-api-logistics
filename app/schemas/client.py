@@ -24,6 +24,10 @@ class ClientResponseDuplicated(BaseModel):
     msg: str = 'Client - Client duplicated'
     type: str = constants.TYPE_CLIENT_DUPLICATED
 
+class ClientResponseNotDeletable(BaseModel):
+    msg: str = 'Client - Client cannot be deleted'
+    type: str = constants.TYPE_CLIENT_NOT_DELETABLE
+
 class ClientResponseNotFound(BaseModel):
     msg: str = 'Client - Client not found'
     type: str = constants.TYPE_CLIENT_NOT_FOUND

@@ -3,9 +3,17 @@ from fastapi.param_functions import Depends
 from app.database.query import Page
 from app.models.client import Client
 from app.repositories.client import ClientRepository
-from app.repositories.exceptions import DuplicateException, NotFoundException
+from app.repositories.exceptions import (
+    DeleteException,
+    DuplicateException,
+    NotFoundException
+)
 from app.schemas.params.client import ClientParams
-from app.services.exceptions import ClientDuplicatedException, ClientNotFoundException
+from app.services.exceptions import (
+    ClientDuplicatedException,
+    ClientNotDeletableException,
+    ClientNotFoundException
+)
 
 
 class ClientService:
@@ -55,6 +63,8 @@ class ClientService:
             with self.client_repository:
                 client = self.client_repository.get(id=client_id)
                 self.client_repository.delete(client)
+        except DeleteException as ex:
+            raise ClientNotDeletableException() from ex
         except NotFoundException as ex:
             raise ClientNotFoundException() from ex
 

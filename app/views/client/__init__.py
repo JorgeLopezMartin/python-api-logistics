@@ -19,6 +19,7 @@ from app.schemas.client import (
     ClientRequest,
     ClientResponse,
     ClientResponseDuplicated,
+    ClientResponseNotDeletable,
     ClientResponseNotFound
 )
 from app.views.client.create_client import create_client
@@ -83,6 +84,9 @@ clients_router.add_api_route(
     responses={
         HTTP_404_NOT_FOUND: {
             'model': APIErrorResponse[ClientResponseNotFound]
+        },
+        HTTP_409_CONFLICT: {
+            'model': APIErrorResponse[ClientResponseNotDeletable]
         }
     },
     summary='Deletes a specific client by ID.',

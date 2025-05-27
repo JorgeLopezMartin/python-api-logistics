@@ -29,6 +29,10 @@ class VesselUpdateRequest(BaseModel):
     name: Optional[str] = None
     capacity: Optional[float] = None
 
+class VesselResponseNotDeletable(BaseModel):
+    msg: str = 'Vessel - Vessel not deletable'
+    type: str = constants.TYPE_VESSEL_NOT_DELETABLE
+
 class VesselResponseDuplicated(BaseModel):
     msg: str = 'Vessel - Vessel duplicated'
     type: str = constants.TYPE_VESSEL_DUPLICATED

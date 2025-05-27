@@ -40,6 +40,9 @@ def test_create_location_endpoint(
     assert response.status_code == HTTP_201_CREATED
     assert response.json()['data']['name'] == 'Test'
 
+    locations = db_session.query(Location).all()
+    assert len(locations) == 1
+
 def test_get_location_endpoint(
     db_session,
     client,

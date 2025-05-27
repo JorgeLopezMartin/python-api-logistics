@@ -2,15 +2,17 @@ from types import TracebackType
 from typing import Any, Optional, Type
 
 from fastapi import Depends
-from psycopg2.errors import \
-    UniqueViolation  # pylint: disable=no-name-in-module
+from psycopg2.errors import (
+    NotNullViolation,
+    UniqueViolation
+)  # pylint: disable=no-name-in-module
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 from app.database.query import PaginatedQuery
 from app.database.session import get_db
 from app.models.base import BaseModel
-from app.repositories.exceptions import DuplicateException
+from app.repositories.exceptions import DeleteException, DuplicateException
 
 
 class BaseRepository:
@@ -87,6 +89,8 @@ class BaseRepository:
             self.db_session.commit()
 
         except IntegrityError as e:
+            if isinstance(e.orig, NotNullViolation):
+                raise DeleteException() from e
             if isinstance(e.orig, UniqueViolation):
                 raise DuplicateException() from e
 

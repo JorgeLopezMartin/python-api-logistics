@@ -32,6 +32,10 @@ class LocationUpdateRequest(BaseModel):
     latitude: Optional[float] = None
     longitude: Optional[float] = None
 
+class LocationResponseNotDeletable(BaseModel):
+    msg: str = 'Location - Location not deletable'
+    type: str = constants.TYPE_LOCATION_NOT_DELETABLE
+
 class LocationResponseDuplicated(BaseModel):
     msg: str = 'Location - Location duplicated'
     type: str = constants.TYPE_LOCATION_DUPLICATED

@@ -19,6 +19,7 @@ from app.schemas.location import (
     LocationRequest,
     LocationResponse,
     LocationResponseDuplicated,
+    LocationResponseNotDeletable,
     LocationResponseNotFound
 )
 from app.views.location.create_location import create_location
@@ -83,6 +84,9 @@ locations_router.add_api_route(
     responses={
         HTTP_404_NOT_FOUND: {
             'model': APIErrorResponse[LocationResponseNotFound]
+        },
+        HTTP_409_CONFLICT: {
+            'model': APIErrorResponse[LocationResponseNotDeletable]
         }
     },
     summary='Deletes a specific location by ID.',

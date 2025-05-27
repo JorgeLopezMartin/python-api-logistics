@@ -2,10 +2,18 @@ from fastapi.param_functions import Depends
 
 from app.database.query import Page
 from app.models.vessel import Vessel
-from app.repositories.exceptions import DuplicateException, NotFoundException
+from app.repositories.exceptions import (
+    DeleteException,
+    DuplicateException,
+    NotFoundException
+)
 from app.repositories.vessel import VesselRepository
 from app.schemas.params.vessel import VesselParams
-from app.services.exceptions import VesselDuplicatedException, VesselNotFoundException
+from app.services.exceptions import (
+    VesselDuplicatedException,
+    VesselNotDeletableException,
+    VesselNotFoundException
+)
 
 
 class VesselService:
@@ -58,6 +66,8 @@ class VesselService:
             with self.vessel_repository:
                 vessel = self.vessel_repository.get(id=vessel_id)
                 self.vessel_repository.delete(vessel)
+        except DeleteException as ex:
+            raise VesselNotDeletableException() from ex
         except NotFoundException as ex:
             raise VesselNotFoundException() from ex
 
