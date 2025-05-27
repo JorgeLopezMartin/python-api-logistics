@@ -50,7 +50,7 @@ def create_track(
         logger.info('Cargo already delivered, no track created')
         return raise_http_exception(
             ex,
-            HTTP_404_NOT_FOUND,
+            HTTP_409_CONFLICT,
             [CargoResponseAlreadyDelivered().dict()]
         )
     except CargoNotFoundException as ex:

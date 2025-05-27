@@ -516,6 +516,503 @@ Responses:
 }
 ```
 
+### Cargo:
+
+Each cargo from a contract.
+
+Create cargo:
+```
+POST /cargo
+
+Request body (example):
+{
+  "data": {
+    "type": 0,
+    "quantity": 0,
+    "contract_id": 0
+  }
+}
+
+Responses:
+
+201: Successful
+Response body (example):
+{
+  "data": {
+    "id": 0,
+    "type": 0,
+    "status": 0,
+    "contract_id": 0
+  }
+}
+
+404: Contract Not found
+{
+  "detail": [
+    {
+      "msg": "Contract - Contract not found",
+      "type": "contract_not_found"
+    }
+  ]
+}
+
+422: Validation error
+	
+
+Validation Error
+Media type
+
+{
+  "detail": [
+    {
+      "loc": [
+        "string",
+        0
+      ],
+      "msg": "string",
+      "type": "string"
+    }
+  ]
+}
+```
+
+List cargoes:
+```
+GET /cargo
+Query params:
+- type: int (0,1,2)
+- status: int (0,1,2)
+- contract_id: int
+- page: int
+- page_size: int
+
+Responses:
+
+200: Successful
+{
+  "data": [
+    {
+      "id": 0,
+      "type": 0,
+      "status": 0,
+      "contract_id": 0
+    }
+  ],
+  "pagination": {
+    "page": 0,
+    "page_size": 0,
+    "total": 0
+  }
+}
+```
+
+Find cargo:
+```
+GET /cargo/{cargo_id}
+
+Responses:
+
+200: Successful
+{
+  "data": {
+    "id": 0,
+    "type": 0,
+    "status": 0,
+    "contract_id": 0
+  }
+}
+
+404: Cargo not found:
+{
+  "detail": [
+    {
+      "msg": "Cargo - Cargo not found",
+      "type": "cargo_not_found"
+    }
+  ]
+}
+```
+
+Delete cargo:
+```
+DELETE /cargo/{cargo_id}
+
+Responses:
+
+204: Successful response
+
+404: Cargo not found
+{
+  "detail": [
+    {
+      "msg": "Cargo - Cargo not found",
+      "type": "cargo_not_found"
+    }
+  ]
+}
+
+409: Cargo not deletable
+{
+  "detail": [
+    {
+      "msg": "Cargo - Cargo cannot be deleted",
+      "type": "cargo_not_deletable"
+    }
+  ]
+}
+```
+
+Update cargo:
+```
+PATCH /cargo/{cargo_id}
+Request body:
+{
+  "data": {
+    "type": 0,
+    "quantity": 0
+  }
+}
+
+Responses:
+
+204: Successful
+
+404: Cargo not found
+{
+  "detail": [
+    {
+      "msg": "Cargo - Cargo not found",
+      "type": "cargo_not_found"
+    }
+  ]
+}
+```
+
+### Vessel:
+
+The entities that transport cargoes.
+
+Create vessel:
+```
+POST /vessel
+Request body:
+{
+  "data": {
+    "name": "string",
+    "capacity": 0
+  }
+}
+
+Responses:
+
+201: Successful
+{
+  "data": {
+    "id": 0,
+    "name": "string",
+    "capacity": 0
+  }
+}
+
+422: Validation error:
+{
+  "detail": [
+    {
+      "loc": [
+        "string",
+        0
+      ],
+      "msg": "string",
+      "type": "string"
+    }
+  ]
+}
+```
+
+List vessels:
+```
+GET /vessel
+Query params:
+- name: str
+- capacity: float
+- page: int
+- page_size: int
+
+Responses:
+
+200: Successful
+{
+   "data": [
+    {
+      "id": 0,
+      "name": "string",
+      "capacity": 0
+    }
+  ],
+  "pagination": {
+    "page": 0,
+    "page_size": 0,
+    "total": 0
+  }
+}
+```
+
+Find vessel:
+```
+GET /vessel/{vessel_id}
+
+Responses:
+
+200: Successful
+{
+  "data": {
+    "id": 0,
+    "name": "string",
+    "capacity": 0
+  }
+}
+
+404: Vessel not found
+{
+  "detail": [
+    {
+      "msg": "Vessel - Vessel not found",
+      "type": "vessel_not_found"
+    }
+  ]
+}
+```
+
+Delete vessel:
+```
+DELETE /vessel/{vessel_id}
+
+Responses:
+
+204: Successful
+
+404: Vessel not found
+{
+  "detail": [
+    {
+      "msg": "Vessel - Vessel not found",
+      "type": "vessel_not_found"
+    }
+  ]
+}
+```
+
+Update vessel:
+```
+PATCH /vessel/{vessel_id}
+{
+  "data": {
+    "name": "string",
+    "capacity": 0
+  }
+}
+
+Responses:
+
+204: Successful
+
+404: Vessel not found
+{
+  "detail": [
+    {
+      "msg": "Vessel - Vessel not found",
+      "type": "vessel_not_found"
+    }
+  ]
+}
+```
+
+### Track:
+
+Each piece of tracking information between cargoes and vessels. It is used to follow any cargo or vessel and know where they are in a specific moment in time. Tracks can have empty cargoes for empty vessel tracking.
+
+When a cargo is pending, the first track instance changes the cargo status to in_transit. Once a track with the cargo in the contract's destination is created, the status of the cargo is changed to delivered.
+
+If a cargo is moved after being delivered, an exception is raised.
+
+Create track:
+```
+POST /track
+{
+  "data": {
+    "date": "2025-05-27T18:31:01.003Z",
+    "location_id": 0,
+    "cargo_id": 0,
+    "vessel_id": 0
+  }
+}
+
+Responses:
+
+201: Successful
+{
+  "data": {
+    "id": 0,
+    "date": "2025-05-27T18:31:01.004Z",
+    "location_id": 0,
+    "cargo_id": 0,
+    "vessel_id": 0
+  }
+}
+
+404: Cargo not found
+{
+  "detail": [
+    {
+      "msg": "Cargo - Cargo not found",
+      "type": "cargo_not_found"
+    }
+  ]
+}
+
+404: Vessel not found
+{
+  "detail": [
+    {
+      "msg": "Vessel - Vessel not found",
+      "type": "vessel_not_found"
+    }
+  ]
+}
+
+404: Location not found
+{
+  "detail": [
+    {
+      "msg": "Location - Location not found",
+      "type": "location_not_found"
+    }
+  ]
+}
+
+409: Cargo already delivered
+{
+  "detail": [
+    {
+      "msg": "Cargo - Already delivered",
+      "type": "cargo_already_delivered"
+    }
+  ]
+}
+```
+
+List tracks:
+```
+GET /track
+Query params:
+- location_id: int
+- cargo_id: int
+- vessel_id: int
+- page: int
+- page_size: int
+
+Responses:
+
+200: Successful
+{
+  "data": [
+    {
+      "id": 0,
+      "date": "2025-05-27T18:36:50.722Z",
+      "location_id": 0,
+      "cargo_id": 0,
+      "vessel_id": 0
+    }
+  ],
+  "pagination": {
+    "page": 0,
+    "page_size": 0,
+    "total": 0
+  }
+}
+```
+
+Find track:
+```
+GET /track/{track_id}
+
+Responses:
+
+200: Successful
+{
+  "data": {
+    "id": 0,
+    "date": "2025-05-27T18:37:38.661Z",
+    "location_id": 0,
+    "cargo_id": 0,
+    "vessel_id": 0
+  }
+}
+
+404: Track not found
+{
+  "detail": [
+    {
+      "msg": "Track - Track not found",
+      "type": "track_not_found"
+    }
+  ]
+}
+```
+
+Delete track:
+```
+DELETE /track/{track_id}
+
+Responses:
+
+204: Successful
+
+404: Track not found
+{
+  "detail": [
+    {
+      "msg": "Track - Track not found",
+      "type": "track_not_found"
+    }
+  ]
+}
+
+409: Track cannot be deleted
+{
+  "detail": [
+    {
+      "msg": "Track - Track not deletable",
+      "type": "track_not_deletable"
+    }
+  ]
+}
+```
+
+Update track:
+```
+PATCH /track/{track_id}
+{
+  "data": {
+    "date": "2025-05-27T18:39:33.900Z"
+  }
+}
+
+Responses:
+
+204: Successful
+
+404: Track not found
+{
+  "detail": [
+    {
+      "msg": "Track - Track not found",
+      "type": "track_not_found"
+    }
+  ]
+}
+```
+
 ### Implementation details:
 
 - Client and Location entities added as they are going to be reused frecuently.
