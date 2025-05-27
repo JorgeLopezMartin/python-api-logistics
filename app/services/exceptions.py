@@ -9,3 +9,9 @@ class LocationNotFoundException(Exception):
 
 class LocationDuplicatedException(Exception):
     """Location already exists"""
+
+class VesselNotFoundException(Exception):
+    """Vessel can not be found"""
+
+class VesselDuplicatedException(Exception):
+    """Vessel already exists"""
