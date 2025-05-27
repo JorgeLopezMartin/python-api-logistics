@@ -1,8 +1,5 @@
-from fastapi import APIRouter
-from fastapi.exceptions import HTTPException
 from fastapi.params import Depends
 from starlette.status import (
-    HTTP_200_OK,
     HTTP_409_CONFLICT
 )
 
@@ -29,4 +26,4 @@ def create_location(
         )
         return APIResponse(data=location)
     except LocationDuplicatedException as ex:
-        raise_http_exception(ex, HTTP_409_CONFLICT, [LocationResponseDuplicated().dict()])
+        return raise_http_exception(ex, HTTP_409_CONFLICT, [LocationResponseDuplicated().dict()])

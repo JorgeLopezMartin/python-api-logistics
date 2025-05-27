@@ -1,5 +1,3 @@
-from fastapi import APIRouter
-from fastapi.exceptions import HTTPException
 from fastapi.params import Depends
 from starlette.status import (
     HTTP_204_NO_CONTENT,
@@ -9,7 +7,6 @@ from starlette.status import (
 from starlette.responses import Response
 
 from app.services.cargo import CargoService
-from app.schemas.base import APIRequest, APIResponse
 from app.schemas.cargo import (
     CargoResponseNotDeletable,
     CargoResponseNotFound
@@ -29,6 +26,6 @@ def delete_cargo(
         cargo_service.delete(cargo_id)
         return Response(status_code=HTTP_204_NO_CONTENT)
     except CargoNotDeletableException as ex:
-        raise_http_exception(ex, HTTP_409_CONFLICT, [CargoResponseNotDeletable().dict()])
+        return raise_http_exception(ex, HTTP_409_CONFLICT, [CargoResponseNotDeletable().dict()])
     except CargoNotFoundException as ex:
-        raise_http_exception(ex, HTTP_404_NOT_FOUND, [CargoResponseNotFound().dict()])
+        return raise_http_exception(ex, HTTP_404_NOT_FOUND, [CargoResponseNotFound().dict()])

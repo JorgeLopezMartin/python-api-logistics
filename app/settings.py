@@ -15,7 +15,7 @@ class Settings(BaseSettings):
     SQLALCHEMY_DATABASE_URI: Optional[str] = None
 
     @validator('SQLALCHEMY_DATABASE_URI', pre=True, always=True)
-    def build_sqlalchemy_url(cls, v: object, values: Dict[str, object]) -> str:
+    def build_sqlalchemy_url(cls, v: object, values: Dict[str, object]) -> str:  # pylint: disable=no-self-argument
         return (
             f'{values["DB_DRIVER"]}://{values["DB_USER"]}:{values["DB_PASSWORD"]}'
             f'@{values["DB_HOST"]}:{values["DB_PORT"]}/{values["DB_NAME"]}'

@@ -1,8 +1,5 @@
-from fastapi import APIRouter
-from fastapi.exceptions import HTTPException
 from fastapi.params import Depends
 from starlette.status import (
-    HTTP_200_OK,
     HTTP_404_NOT_FOUND,
     HTTP_409_CONFLICT
 )
@@ -34,6 +31,6 @@ def create_cargo(
         )
         return APIResponse(data=cargo)
     except ContractNotFoundException as ex:
-        raise_http_exception(ex, HTTP_404_NOT_FOUND, [ContractResponseNotFound().dict()])
+        return raise_http_exception(ex, HTTP_404_NOT_FOUND, [ContractResponseNotFound().dict()])
     except CargoDuplicatedException as ex:
-        raise_http_exception(ex, HTTP_409_CONFLICT, [CargoResponseDuplicated().dict()])
+        return raise_http_exception(ex, HTTP_409_CONFLICT, [CargoResponseDuplicated().dict()])

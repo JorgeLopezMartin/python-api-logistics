@@ -23,7 +23,7 @@ class VesselRepository(BaseRepository):
             self.persist(new_vessel)
             return new_vessel
 
-    def get(
+    def get(  # pylint: disable=arguments-differ
         self,
         **filters: Any
     ) -> Vessel:

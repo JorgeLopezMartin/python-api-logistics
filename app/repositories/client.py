@@ -21,7 +21,7 @@ class ClientRepository(BaseRepository):
             self.persist(new_client)
             return new_client
 
-    def get(
+    def get(  # pylint: disable=arguments-differ
         self,
         **filters: Any
     ) -> Client:

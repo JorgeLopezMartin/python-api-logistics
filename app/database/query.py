@@ -1,3 +1,4 @@
+# pylint: disable=too-many-ancestors,abstract-method
 from dataclasses import dataclass
 from typing import Generic, List, Type, TypeVar
 

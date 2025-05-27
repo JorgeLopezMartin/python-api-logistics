@@ -1,3 +1,4 @@
+# pylint: disable=redefined-builtin
 from typing import Any
 
 from app.database.filter import QueryFilter
@@ -30,7 +31,7 @@ class CargoRepository(BaseRepository):
             self.persist(new_cargo)
             return new_cargo
 
-    def get(
+    def get(  # pylint: disable=arguments-differ
         self,
         **filters: Any
     ) -> Cargo:

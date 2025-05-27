@@ -28,7 +28,7 @@ class TrackRepository(BaseRepository):
             self.persist(new_track)
             return new_track
 
-    def get(
+    def get(  # pylint: disable=arguments-differ
         self,
         **filters: Any
     ) -> Track:

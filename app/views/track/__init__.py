@@ -46,7 +46,12 @@ tracks_router.add_api_route(
     response_model=APIResponse[TrackResponse],
     responses={
         HTTP_404_NOT_FOUND: {
-            'model': APIErrorResponse[CargoResponseAlreadyDelivered|CargoResponseNotFound|LocationResponseNotFound|VesselResponseNotFound]
+            'model': APIErrorResponse[
+                CargoResponseAlreadyDelivered
+                |CargoResponseNotFound
+                |LocationResponseNotFound
+                |VesselResponseNotFound
+            ]
         },
         HTTP_409_CONFLICT: {
             'model': APIErrorResponse[TrackResponseDuplicated]

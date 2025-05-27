@@ -1,14 +1,11 @@
-from fastapi import APIRouter
-from fastapi.exceptions import HTTPException
 from fastapi.params import Depends
 from starlette.status import (
     HTTP_404_NOT_FOUND
 )
 
 from app.services.cargo import CargoService
-from app.schemas.base import APIRequest, APIResponse
+from app.schemas.base import APIResponse
 from app.schemas.cargo import (
-    CargoRequest,
     CargoResponse,
     CargoResponseNotFound
 )
@@ -24,4 +21,4 @@ def get_cargo(
         cargo = cargo_service.get(id=cargo_id)
         return APIResponse(data=cargo)
     except CargoNotFoundException as ex:
-        raise_http_exception(ex, HTTP_404_NOT_FOUND, [CargoResponseNotFound().dict()])
+        return raise_http_exception(ex, HTTP_404_NOT_FOUND, [CargoResponseNotFound().dict()])

@@ -1,14 +1,11 @@
-from fastapi import APIRouter
-from fastapi.exceptions import HTTPException
 from fastapi.params import Depends
 from starlette.status import (
     HTTP_404_NOT_FOUND
 )
 
 from app.services.location import LocationService
-from app.schemas.base import APIRequest, APIResponse
+from app.schemas.base import APIResponse
 from app.schemas.location import (
-    LocationRequest,
     LocationResponse,
     LocationResponseNotFound
 )
@@ -24,4 +21,4 @@ def get_location(
         location = location_service.get(id=location_id)
         return APIResponse(data=location)
     except LocationNotFoundException as ex:
-        raise_http_exception(ex, HTTP_404_NOT_FOUND, [LocationResponseNotFound().dict()])
+        return raise_http_exception(ex, HTTP_404_NOT_FOUND, [LocationResponseNotFound().dict()])

@@ -6,6 +6,7 @@ WORKDIR /code
 
 COPY ./requirements.txt /code/requirements.txt
 COPY docker-entrypoint.sh /code/docker-entrypoint.sh
+COPY .pylintrc /code/.pylintrc
 
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 

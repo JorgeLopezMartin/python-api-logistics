@@ -1,7 +1,7 @@
 from datetime import datetime
-from typing import Any, List, Literal, Optional, Union
+from typing import Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 from app.schemas import constants
 
@@ -44,4 +44,3 @@ class TrackResponseNotDeletable(BaseModel):
 class TrackResponseNotFound(BaseModel):
     msg: str = 'Track - Track not found'
     type: str = constants.TYPE_TRACK_NOT_FOUND
-

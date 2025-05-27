@@ -1,6 +1,6 @@
-from typing import List, Optional
+from typing import List
 
-from sqlalchemy import String, Enum, Float, ForeignKey
+from sqlalchemy import String, Float
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.models.base import BaseModel

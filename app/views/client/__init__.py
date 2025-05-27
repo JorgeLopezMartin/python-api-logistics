@@ -1,13 +1,10 @@
 from fastapi import APIRouter
-from fastapi.params import Depends
 from starlette.status import (
     HTTP_200_OK,
     HTTP_201_CREATED,
     HTTP_204_NO_CONTENT,
-    HTTP_400_BAD_REQUEST,
     HTTP_404_NOT_FOUND,
     HTTP_409_CONFLICT,
-    HTTP_502_BAD_GATEWAY
 )
 
 from app.schemas.base import (
@@ -16,7 +13,6 @@ from app.schemas.base import (
     APIResponsePaginated
 )
 from app.schemas.client import (
-    ClientRequest,
     ClientResponse,
     ClientResponseDuplicated,
     ClientResponseNotDeletable,

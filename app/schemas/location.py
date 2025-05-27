@@ -1,6 +1,6 @@
-from typing import Any, List, Literal, Optional, Union
+from typing import Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 from app.schemas import constants
 
@@ -43,4 +43,3 @@ class LocationResponseDuplicated(BaseModel):
 class LocationResponseNotFound(BaseModel):
     msg: str = 'Location - Location not found'
     type: str = constants.TYPE_LOCATION_NOT_FOUND
-

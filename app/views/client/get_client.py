@@ -1,12 +1,10 @@
-from fastapi import APIRouter
-from fastapi.exceptions import HTTPException
 from fastapi.params import Depends
 from starlette.status import (
     HTTP_404_NOT_FOUND
 )
 
 from app.services.client import ClientService
-from app.schemas.base import APIRequest, APIResponse
+from app.schemas.base import APIResponse
 from app.schemas.client import (
     ClientResponse,
     ClientResponseNotFound
@@ -23,4 +21,4 @@ def get_client(
         client = client_service.get(id=client_id)
         return APIResponse(data=client)
     except ClientNotFoundException as ex:
-        raise_http_exception(ex, HTTP_404_NOT_FOUND, [ClientResponseNotFound().dict()])
+        return raise_http_exception(ex, HTTP_404_NOT_FOUND, [ClientResponseNotFound().dict()])

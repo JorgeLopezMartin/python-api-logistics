@@ -61,3 +61,8 @@ services:
         depends_on:
             integration_test_db:
                 condition: service_healthy
+    
+    pylint:
+        extends:
+            service: application
+        entrypoint: ["pylint"]

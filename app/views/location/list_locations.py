@@ -1,13 +1,9 @@
-from fastapi import APIRouter
-from fastapi.exceptions import HTTPException
 from fastapi.params import Depends
 
 from app.services.location import LocationService
 from app.schemas.base import APIResponsePaginated
 from app.schemas.params.location import LocationParams
 from app.schemas.location import LocationResponse
-
-from app.views.exceptions import raise_http_exception
 
 
 def list_locations(

@@ -25,7 +25,7 @@ class ContractRepository(BaseRepository):
             self.persist(new_contract)
             return new_contract
 
-    def get(
+    def get(  # pylint: disable=arguments-differ
         self,
         **filters: Any
     ) -> Contract:

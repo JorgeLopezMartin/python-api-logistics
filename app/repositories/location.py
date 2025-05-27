@@ -25,7 +25,7 @@ class LocationRepository(BaseRepository):
             self.persist(new_location)
             return new_location
 
-    def get(
+    def get(  # pylint: disable=arguments-differ
         self,
         **filters: Any
     ) -> Location:

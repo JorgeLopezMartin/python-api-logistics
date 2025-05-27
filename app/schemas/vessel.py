@@ -1,6 +1,6 @@
-from typing import Any, List, Literal, Optional, Union
+from typing import Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 from app.schemas import constants
 
@@ -40,4 +40,3 @@ class VesselResponseDuplicated(BaseModel):
 class VesselResponseNotFound(BaseModel):
     msg: str = 'Vessel - Vessel not found'
     type: str = constants.TYPE_VESSEL_NOT_FOUND
-

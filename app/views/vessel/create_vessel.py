@@ -1,8 +1,5 @@
-from fastapi import APIRouter
-from fastapi.exceptions import HTTPException
 from fastapi.params import Depends
 from starlette.status import (
-    HTTP_200_OK,
     HTTP_409_CONFLICT
 )
 
@@ -28,4 +25,4 @@ def create_vessel(
         )
         return APIResponse(data=vessel)
     except VesselDuplicatedException as ex:
-        raise_http_exception(ex, HTTP_409_CONFLICT, [VesselResponseDuplicated().dict()])
+        return raise_http_exception(ex, HTTP_409_CONFLICT, [VesselResponseDuplicated().dict()])

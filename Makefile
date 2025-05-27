@@ -49,3 +49,9 @@ tests: ##@test Run tests.
 .PHONY: integration-tests
 integration-tests: ##@test Run integration tests
 	docker-compose run --rm integration_test -m integration
+
+.PHONY: pylint
+pylint: ##@test Run pylint verification.
+pylint: args ?= --rcfile=.pylintrc /code/app
+pylint:
+	docker-compose run --rm --no-deps pylint --ignore=tests ${args}
