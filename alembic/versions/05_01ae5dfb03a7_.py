@@ -1,4 +1,4 @@
-"""''
+"""'Locations table creation'
 
 Revision ID: 01ae5dfb03a7
 Revises: 56b9ded62f5a

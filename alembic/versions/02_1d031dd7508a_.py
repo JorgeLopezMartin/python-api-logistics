@@ -1,4 +1,4 @@
-"""''
+"""'Client table creation'
 
 Revision ID: 1d031dd7508a
 Revises: ea4e78adbf3a

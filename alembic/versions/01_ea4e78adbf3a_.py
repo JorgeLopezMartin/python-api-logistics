@@ -1,4 +1,4 @@
-"""''
+"""'Contract table creation'
 
 Revision ID: ea4e78adbf3a
 Revises: 

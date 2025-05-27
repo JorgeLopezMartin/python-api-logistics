@@ -1,4 +1,4 @@
-"""''
+"""'Vessels table creation'
 
 Revision ID: 56b9ded62f5a
 Revises: 1f2038addef4

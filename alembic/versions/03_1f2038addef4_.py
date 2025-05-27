@@ -1,4 +1,4 @@
-"""''
+"""'Cargoes table creation'
 
 Revision ID: 1f2038addef4
 Revises: 1d031dd7508a

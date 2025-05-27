@@ -1,4 +1,4 @@
-"""''
+"""'Tracks table creation'
 
 Revision ID: c84b9a844fb4
 Revises: 01ae5dfb03a7
